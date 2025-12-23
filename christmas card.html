@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Teaser</title>
+    <title>Christmas Card Surprise</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -17,6 +17,7 @@
             height: 100vh;
             color: #333;
             text-align: center;
+            transition: all 0.5s ease;
         }
         .snowflake {
             position: absolute;
@@ -31,6 +32,24 @@
         .teaser {
             z-index: 2;
             max-width: 400px;
+            display: block;
+        }
+        .card {
+            background: #FFF;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            z-index: 2;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .card.show {
+            display: block;
+            opacity: 1;
         }
         .title {
             font-size: 36px;
@@ -49,6 +68,23 @@
         .button:hover {
             background: #FF6347;
         }
+        .tree {
+            font-size: 50px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .tree.lit {
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700;
+        }
+        .message {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .signature {
+            font-style: italic;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -63,10 +99,35 @@
     <div class="snowflake" style="left: 80%; animation-delay: 7s;">❄</div>
     <div class="snowflake" style="left: 90%; animation-delay: 8s;">❄</div>
 
-    <div class="teaser">
+    <!-- Teaser Section -->
+    <div class="teaser" id="teaser">
         <h1 class="title">🎄 A Special Christmas Surprise Awaits! 🎄</h1>
         <p>Click below to unwrap your festive card...</p>
-        <a href="christmas_card.html"><button class="button">Click to Open Your Card</button></a>
+        <button class="button" id="openButton">Click to Open Your Card</button>
     </div>
+
+    <!-- Card Section -->
+    <div class="card" id="card">
+        <h1>🎄 Merry Christmas! 🎄</h1>
+        <div class="tree" id="tree">🌲</div>
+        <p class="message">Wishing you joy, peace, and a season filled with warmth and wonder. May your holidays sparkle like fresh snow!</p>
+        <p class="signature">From Grok, with festive cheer</p>
+    </div>
+
+    <script>
+        const openButton = document.getElementById('openButton');
+        const teaser = document.getElementById('teaser');
+        const card = document.getElementById('card');
+        const tree = document.getElementById('tree');
+
+        openButton.addEventListener('click', () => {
+            teaser.style.display = 'none';
+            card.classList.add('show');
+        });
+
+        tree.addEventListener('click', () => {
+            tree.classList.toggle('lit');
+        });
+    </script>
 </body>
 </html>
